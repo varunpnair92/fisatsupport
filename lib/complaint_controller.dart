@@ -139,13 +139,13 @@ class ComplaintController extends GetxController {
           "emailid": "varunpnair92@gmail.com",
           "subject": "Complaint Registered from ${details["labName"]}",
           "message": """
-        <div>
-          <h2 style="color: green;">Location : ${details["labName"]}</h2>
-          <h3 style="color: orange;">Stock No : ${details["stockNo"]}</h3>
-          <h3 style="color: orange;">Pc No : ${details[""]}</h3>
-          <h3 style="color: blue;">Complaint Registered by : ${details["registeredBy"]}</h3>
-          <h3 style="color: red;">Complaint : ${details["complaint"]}</h3>
-        </div>
+        
+          Location : ${details["labName"]} \n
+          Stock No : ${details["stockNo"]}\n
+          Pc No : ${details[""]}\n
+          Complaint Registered by : ${details["registeredBy"]}\n
+          Complaint : ${details["complaint"]}
+        
         """
         }),
         

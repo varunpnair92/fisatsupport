@@ -115,20 +115,49 @@ class ComplaintDetailPage extends StatelessWidget {
             ),
 const SizedBox(height: 10),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-              onPressed: () async {
-                await controller.updateComplaintStatus(
-                  complaintId,
-                  {'status': 'Completed',
-                  'technician_name': technicianNameController.text,
-                    'attended_date': attendedDateController.text,
-                    'completed_date': completedDateController.text,
-                    'remark': remarksController.text,},
-                );
-                Get.back(); // Go back to the previous page after resolving
-              },
-              child: const Text('Mark as Resolved'),
-            ),
+  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+  onPressed: () async {
+    try {
+      await controller.updateComplaintStatus(
+        complaintId,
+        {
+          'status': 'Completed',
+          'technician_name': technicianNameController.text,
+          'attended_date': attendedDateController.text,
+          'completed_date': completedDateController.text,
+          'remark': remarksController.text,
+        },
+      );
+      
+      // Show the success snackbar
+      Get.snackbar(
+        'Success',
+        'Complaint marked as resolved',
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+
+      // Navigate back after a small delay to ensure the snackbar is visible
+      Future.delayed(const Duration(milliseconds: 500), () {
+        Get.back();
+      });
+    } catch (e) {
+      // Show the error snackbar
+      Get.snackbar(
+        'Error',
+        'Failed to mark as resolved',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+    }
+  },
+  child: const Text('Mark as Resolved'),
+),
+
 
           ],
         ),
