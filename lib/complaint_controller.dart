@@ -126,11 +126,17 @@ class ComplaintController extends GetxController {
 
   Future<void> sendEmailNotification(Map<String, String> details) async {
     try {
+
+  //     var body = jsonEncode({
+  //   "emailid": "varunpnair92@gmail.com",
+  //   "subject": "Complaint Notification",
+  //   "message": "Location: LAB-2\nStock No: FISATPC1614\nComplaint Registered by: VARUN P NAIR\nComplaint: NO TERMINAL(PC 21)"
+  // });
       final response = await http.post(
         Uri.parse("${Sharedvariable().ip}/emailAny"),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          "email": "varunpnair92@gmail.com",
+          "emailid": "varunpnair92@gmail.com",
           "subject": "Complaint Registered from ${details["labName"]}",
           "message": """
         <div>
@@ -142,6 +148,7 @@ class ComplaintController extends GetxController {
         </div>
         """
         }),
+        
       );
 
       if (response.statusCode == 200) {

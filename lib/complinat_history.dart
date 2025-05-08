@@ -40,9 +40,12 @@ class ComplaintHistoryPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Lab Name: ${complaint.labName}"),
+                        Text("Stock No: ${complaint.stockNo}"),
+                        Text("Pc No: ${complaint.pcNo}"),
                         Text("Lab Incharge: ${complaint.labIncharge}"),
                         Text("Registered Date: ${DateFormat('dd-MM-yyyy').format(complaint.date)}"),
                         Text("Status: ${complaint.status}"),
+                        Text("Remarks: ${complaint.remark}"),
                       ],
                     ),
                     onTap: () => Get.toNamed("/details", arguments: complaint.id),
@@ -73,6 +76,7 @@ class ComplaintHistoryPage extends StatelessWidget {
                         Text("Completed Date: ${complaint.completedDate != null ? DateFormat('dd-MM-yyyy').format(complaint.completedDate!) : 'Not Set'}"),
                         Text("Technician Name: ${complaint.technicianName ?? 'Not Set'}"),
                         Text("Status: ${complaint.status}"),
+                         Text("Remarks: ${complaint.remark}"),
                       ],
                     ),
                     onTap: () => Get.offAllNamed("/details", arguments: complaint.id), // Correct route and arguments
