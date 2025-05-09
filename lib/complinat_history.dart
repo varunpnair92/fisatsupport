@@ -84,7 +84,9 @@ class _ComplaintHistoryPageState extends State<ComplaintHistoryPage> {
                         .where((complaint) =>
                             complaint.complaint.toLowerCase().contains(searchText) ||
                             complaint.labName.toLowerCase().contains(searchText) ||
-                            complaint.technicianName?.toLowerCase().contains(searchText) == true)
+                            (complaint.technicianName != null &&
+                                complaint.technicianName!.toLowerCase().contains(searchText)) ||
+                            complaint.stockNo.toString().toLowerCase().contains(searchText))
                         .toList();
 
                     if (completedComplaints.isEmpty) {
@@ -102,6 +104,8 @@ class _ComplaintHistoryPageState extends State<ComplaintHistoryPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Lab Name: ${complaint.labName}"),
+                              Text("Stock No: ${complaint.stockNo}"),
+                              Text("Pc No: ${complaint.pcNo}"),
                               Text("Lab Incharge: ${complaint.labIncharge}"),
                               Text("Registered Date: ${DateFormat('dd-MM-yyyy').format(complaint.date)}"),
                               Text("Attended Date: ${complaint.attendedDate != null ? DateFormat('dd-MM-yyyy').format(complaint.attendedDate!) : 'Not Set'}"),

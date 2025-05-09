@@ -109,7 +109,7 @@ class RegisterComplaintPage extends StatelessWidget {
                     complaint: _complaintController.text,
                     date: complaintDate,
                     status: "Pending",
-                    stockNo: _stockNoController.text,
+                    stockNo: "FISATPC${_stockNoController.text}",
                     pcNo: _pcNoController.text,
                   );
 
